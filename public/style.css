@@ -1,8 +1,13 @@
-h1{
-    color: white;
-    background-color: rgb(172, 175, 232);
-    font-size: 100px;
-
-
-   
+body{
+    display: flex;
+    justify-content: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 600px;
+    background-color: #e1f0f0;
+    justify-content: space-around;
+    align-items: center;
 }
