@@ -11,3 +11,7 @@ form{
     justify-content: space-around;
     align-items: center;
 }
+a{
+    text-decoration: none;
+    margin: 10px;
+}

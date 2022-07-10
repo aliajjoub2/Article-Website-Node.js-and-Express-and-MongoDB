@@ -4,6 +4,7 @@ const port = 3000
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }));
+const Article = require("./models/articleSchema"); // import Article from the articleSechema
 
 // auto refresh
 const path = require("path");
@@ -42,7 +43,7 @@ app.get('/', (req, res) => {
   res.render("index")
 })
 app.get('/all-articles', (req, res) => {
-  res.render("index")
+  res.render("all-articles")
 })
 app.get('/add-new-article', (req, res) => {
   res.render("add-new-article")
@@ -52,7 +53,26 @@ app.get('/add-new-article', (req, res) => {
   res.redirect('/html')
 }) */
 
+
+
+
+ 
+ // sve data in database
+app.post("/all-articles", (req, res) => {
+  const article = new Article(req.body);
+ 
+  console.log(req.body);
+ 
+  article
+    .save()
+    .then( result => {
+      res.redirect("/all-articles");
+    })
+    .catch( err => {
+      console.log(err);
+    });
+}); 
+
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!")
 })
-
