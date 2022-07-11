@@ -15,3 +15,7 @@ a{
     text-decoration: none;
     margin: 10px;
 }
+.containerForm{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
     
-    <a href="/all-articles"> All Articles</a>
-    <br>
-    <a href="/add-new-article"> Add neu Article</a>
-    <h1>Index</h1>
-</body>
-</html>
+     <%- include('partials/header'); %>  
+    
+    <% arrArticle.forEach(item=> { %>
+ 
+        <article>
+          <h2><%= item.title %></h2>
+       
+          <p>
+            <%= item.summary %>
+            <a class="btn" href="/dddddd">show more</a>
+          </p>
+        </article>
+       
+        <% }); %> 
+
+     <%- include('partials/footer'); %> 
+     

@@ -40,13 +40,13 @@ mongoose.connect("mongodb+srv://ali-ajjoub:ali.node1984@cluster0.pxc5n.mongodb.n
   res.send('<h1> Hello World! Ali 2 44455 sll reerrerew <\h1>')
 }) */
 app.get('/', (req, res) => {
-  res.render("index")
+  res.render("index", {title: 'index'})
 })
-app.get('/all-articles', (req, res) => {
+/* app.get('/all-articles', (req, res) => {
   res.render("all-articles")
-})
+}) */
 app.get('/add-new-article', (req, res) => {
-  res.render("add-new-article")
+  res.render("add-new-article", {title: 'Add new Article'})
 })
 
 /* app.get('/', (req, res) => {
@@ -61,7 +61,7 @@ app.get('/add-new-article', (req, res) => {
 app.post("/all-articles", (req, res) => {
   const article = new Article(req.body);
  
-  console.log(req.body);
+  //console.log(req.body);
  
   article
     .save()
@@ -69,6 +69,18 @@ app.post("/all-articles", (req, res) => {
       res.redirect("/all-articles");
     })
     .catch( err => {
+      console.log(err);
+    });
+}); 
+
+ 
+app.get("/all-articles", (req, res) => {
+ 
+  Article.find()
+    .then((result) => {
+      res.render("index", { title: "HOME", arrArticle: result });
+    })
+    .catch((err) => {
       console.log(err);
     });
 }); 
