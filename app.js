@@ -84,6 +84,17 @@ app.get("/all-articles", (req, res) => {
       console.log(err);
     });
 }); 
+app.get("/details/:id", (req, res) => {
+  // result =   object  inside mongo database
+ 
+  Article.findById(req.params.id)
+    .then((result) => {
+      res.render("details", { title: "ARTICLE DETAILS", objArticle: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}); 
 
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!")
