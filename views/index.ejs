@@ -1,19 +1,18 @@
 
+ <<%- include('partials/header'); %>  
     
-     <%- include('partials/header'); %>  
-    
-    <% arrArticle.forEach(item=> { %>
+ <% arrArticle.forEach(item=> { %>
  
-        <article>
-          <h2><%= item.title %></h2>
-       
-          <p>
-            <%= item.summary %>
-            <a class="btn" href="details/<%= item.id %> ">show more</a>
-          </p>
-        </article>
-       
-        <% }); %> 
-
-     <%- include('partials/footer'); %> 
+     <article>
+       <h2><%= item.title %></h2>
+    
+       <p>
+         <%= item.summary %>
+         <a class="btn" href="details/<%= item.id %> ">show more</a>
+       </p>
+     </article>
+    
+     <% }); %> 
+ 
+  <%- include('partials/footer'); %> 
      

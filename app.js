@@ -42,9 +42,9 @@ mongoose.connect("mongodb+srv://ali-ajjoub:ali.node1984@cluster0.pxc5n.mongodb.n
 app.get('/', (req, res) => {
   res.render("index", {title: 'index'})
 })
-/* app.get('/all-articles', (req, res) => {
+/*  app.get('/all-articles', (req, res) => {
   res.render("all-articles")
-}) */
+})  */
 app.get('/add-new-article', (req, res) => {
   res.render("add-new-article", {title: 'Add new Article'})
 })
@@ -96,6 +96,15 @@ app.get("/details/:id", (req, res) => {
     });
 }); 
 
+app.delete("/details/:id", (req, res) => {
+  Article.findByIdAndDelete(req.params.id)
+    .then((params) => {
+      res.json( {mylink: "/all-articles"} );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}); 
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!")
 })
