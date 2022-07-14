@@ -39,9 +39,9 @@ mongoose.connect("mongodb+srv://ali-ajjoub:ali.node1984@cluster0.pxc5n.mongodb.n
 /* app.get('/', (req, res) => {
   res.send('<h1> Hello World! Ali 2 44455 sll reerrerew <\h1>')
 }) */
-app.get('/', (req, res) => {
-  res.render("index", {title: 'index'})
-})
+/* app.get('/', (req, res) => {
+  res.render("index", { title: "HOME"})
+}) */
 /*  app.get('/all-articles', (req, res) => {
   res.render("all-articles")
 })  */
@@ -58,7 +58,7 @@ app.get('/add-new-article', (req, res) => {
 
  
  // sve data in database
-app.post("/all-articles", (req, res) => {
+app.post("/addArticle", (req, res) => {
   const article = new Article(req.body);
  
   //console.log(req.body);
@@ -66,7 +66,7 @@ app.post("/all-articles", (req, res) => {
   article
     .save()
     .then( result => {
-      res.redirect("/all-articles");
+      res.redirect("/");
     })
     .catch( err => {
       console.log(err);
@@ -74,7 +74,7 @@ app.post("/all-articles", (req, res) => {
 }); 
 
  
-app.get("/all-articles", (req, res) => {
+app.get("/", (req, res) => {
  
   Article.find()
     .then((result) => {
@@ -99,7 +99,7 @@ app.get("/details/:id", (req, res) => {
 app.delete("/details/:id", (req, res) => {
   Article.findByIdAndDelete(req.params.id)
     .then((params) => {
-      res.json( {mylink: "/all-articles"} );
+      res.json( {mylink: "/"} );
     })
     .catch((err) => {
       console.log(err);
