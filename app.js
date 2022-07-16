@@ -1,12 +1,14 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 5000
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }));
 const Article = require("./models/articleSchema"); // import Article from the articleSechema
+// Article Details const
+var details = require("./routes/detailsRout");
 
-// auto refresh
+ // auto refresh
 const path = require("path");
 const livereload = require("livereload");
 const liveReloadServer = livereload.createServer();
@@ -20,7 +22,7 @@ liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
     liveReloadServer.refresh("/");
   }, 100);
-}); 
+});  
 
 // connect MongoDB
  
@@ -73,7 +75,7 @@ app.post("/addArticle", (req, res) => {
     });
 }); 
 
- 
+ // downlosd the data from database
 app.get("/", (req, res) => {
  
   Article.find()
@@ -84,27 +86,11 @@ app.get("/", (req, res) => {
       console.log(err);
     });
 }); 
-app.get("/details/:id", (req, res) => {
-  // result =   object  inside mongo database
- 
-  Article.findById(req.params.id)
-    .then((result) => {
-      res.render("details", { title: "ARTICLE DETAILS", objArticle: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}); 
 
-app.delete("/details/:id", (req, res) => {
-  Article.findByIdAndDelete(req.params.id)
-    .then((params) => {
-      res.json( {mylink: "/"} );
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}); 
+// dtails path
+app.use(details);
+
+// page 404
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!")
 })
