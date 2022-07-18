@@ -1,7 +1,16 @@
 
  <%- include('partials/header'); %>  
+ <% if (locals.message && message !="") {%>
+         
+  <h1 style="color: green">
+          <%= message%>
+  </h1>
+<%}%> 
     
  <% arrArticle.forEach(item=> { %>
+
+  
+
  
      <article>
       <h1>Ali</h1>
